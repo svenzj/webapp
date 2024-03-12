@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
+import './App.css'; // or './index.css' depending on your project structure
 
 function HomePage() {
   const [comparisonResults, setComparisonResults] = useState(null);
@@ -49,50 +49,50 @@ function HomePage() {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.uploadContainer}>
-        <h2>Old File</h2>
+    <div className="container">
+      <div className="uploadContainer">
+        <h2 className="glowing-btn">Old File</h2>
         <input
           type="file"
           accept=".json"
           onChange={(event) => handleFileUpload(event, 'Old')}
-          style={styles.fileInput}
+          className="glowing-btn"
         />
-        <h2>New File</h2>
+        <h2  className="glowing-btn">New File</h2>
         <input
           type="file"
           accept=".json"
           onChange={(event) => handleFileUpload(event, 'New')}
-          style={styles.fileInput}
+          className="glowing-btn"
         />
-        <h2>Following File</h2>
+        <h2  className="glowing-btn">Following File</h2>
         <input
           type="file"
           accept=".json"
           onChange={(event) => handleFileUpload(event, 'Following')}
-          style={styles.fileInput}
+          className="glowing-btn"
         />
       </div>
-      <Button variant="contained" color="primary" onClick={compareData} style={styles.compareButton}>Compare Data</Button>
+      <button  className='glowing-btn' onClick={compareData}>Hit it!</button>
       
       {comparisonResults && comparisonResults.results && (
-        <div style={styles.resultsContainer}>
-          <p style={styles.resultText}>Had: {comparisonResults.results.followersOld}</p>
-          <p style={styles.resultText}>Now have: {comparisonResults.results.followersNew}</p>
-          <p style={styles.resultText}>Lost followers:</p>
-            <ul style={styles.resultList}>
+        <div className="resultsContainer">
+          <p className="glowing-btn">Had: {comparisonResults.results.followersOld}</p>
+          <p className="glowing-btn">Now have: {comparisonResults.results.followersNew}</p>
+          <p className="glowing-btn">Lost followers:</p>
+            <ul className="resultList">
             {comparisonResults.results.unfollowed.map((follower, index) => (
-                <li key={index} style={styles.resultListItem}>
+                <li key={index} className="resultListItem">
                     <a href={`https://instagram.com/${follower}`} target="_blank" rel="noopener noreferrer">
                         {follower}
                     </a>
                 </li>))}
             </ul>
-          <p style={styles.resultText}>Not following me back:</p>
-            <ul style={styles.resultList}>
+          <p className="glowing-btn">Not following me back:</p>
+            <ul className="resultList">
                 {comparisonResults.results.unfollowedFollowing.map((follower, index) => (
-                    <li key={index} style={styles.resultListItem}>
-                        <a href={`https://instagram.com/${follower}`} target="_blank" rel="noopener noreferrer">
+                    <li key={index} className="resultListItem">
+                        <a href={`https://instagram.com/${follower}`} target="_blank" rel="noopener noreferrer" className="link-class">
                             {follower}
                         </a>
                     </li>))}
@@ -103,44 +103,4 @@ function HomePage() {
   );
 }
 
-const styles = {
-    container: {
-      fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif`,
-      WebkitFontSmoothing: 'antialiased',
-      MozOsxFontSmoothing: 'grayscale',
-      padding: '20px',
-    },
-    heading: {
-      fontSize: '24px',
-      marginBottom: '20px',
-    },
-    uploadContainer: {
-      marginBottom: '20px',
-    },
-    fileInput: {
-      marginBottom: '10px',
-    },
-    compareButton: {
-      marginTop: '20px',
-    },
-    resultsContainer: {
-      marginTop: '20px',
-    },
-    resultText: {
-      fontSize: '18px',
-      fontWeight: 'bold',
-      marginBottom: '10px',
-    },
-    resultList: {
-      listStyle: 'none',
-      padding: 0,
-    },
-    resultListItem: {
-      fontSize: '16px',
-      marginBottom: '5px',
-    },
-  };
-  
-  export default HomePage;
+export default HomePage;
